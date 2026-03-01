@@ -17,5 +17,9 @@
   },
   "files.associations": {
     "*.svg": "html"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   }
 }

@@ -2,12 +2,6 @@ echo "🔍 Checking branch name..."
 
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 
-if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "develop" ]; then
-  echo "❌ Direct pushes to '$BRANCH_NAME' are not allowed."
-  echo "👉 Please open a PR instead of pushing directly."
-  exit 1
-fi
-
 BRANCH_REGEX="^(fix|chore|enhancement|feat|hotfix|refactor)/[a-z0-9._-]+$"
 
 if ! echo "$BRANCH_NAME" | grep -Eq "$BRANCH_REGEX"; then

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "baseUrl": ".",
+    "paths": {
+      "#root/*": ["./*"],
+      "#core/*": ["./src/core/*"],
+      "#config/*": ["./src/core/config/*"],
+      "#utils/*": ["./src/core/utils/*"],
+      "#middleware/*": ["./src/core/middleware/*"],
+      "#modules/*": ["./src/modules/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
