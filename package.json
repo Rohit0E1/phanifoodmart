@@ -5,17 +5,11 @@
   "type": "module",
   "imports": {
     "#root/*": "./*",
-    "#util/*": "./src/util/*",
-    "#models/*": "./src/models/*",
-    "#controllers/*": "./src/controllers/*",
-    "#routes/*": "./src/routes/*",
-    "#service/*": "./src/service/*",
-    "#middleware/*": "./src/middleware/*",
-    "#validations/*": "./src/validations/*",
-    "#config/*": "./src/config/*",
-    "#helpers/*": "./src/helpers/*",
-    "#utils/*": "./src/util/*",
-    "#constants/*": "./src/constants/*"
+    "#core/*": "./src/core/*",
+    "#config/*": "./src/core/config/*",
+    "#utils/*": "./src/core/utils/*",
+    "#middleware/*": "./src/core/middleware/*",
+    "#modules/*": "./src/modules/*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

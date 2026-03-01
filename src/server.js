@@ -1,10 +1,10 @@
-import { config } from './config/config.js';
+import { config } from './core/config/config.js';
 import app from './app.js';
-import db from './config/db.js';
+import db from './core/config/db.js';
 
 const PORT = config.PORT;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
   db.connect()
     .then(() => {
@@ -21,7 +21,7 @@ const gracefulShutdown = async () => {
   try {
     await db.disconnect();
     console.log('Mongoose disconnected');
-    app?.close(() => {
+    server.close(() => {
       console.log('Server closed.');
       process.exit(0);
     });
