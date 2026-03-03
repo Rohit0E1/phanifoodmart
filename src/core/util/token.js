@@ -7,13 +7,12 @@ const tokenGenerate = (payload, expiresIn = '6h') => {
 
 export const generateToken = (user) => {
   try {
-    const { _id, email, firstName, lastName, phoneNumber, active } = user;
+    const { _id, email, fullName, phoneNumber, active } = user;
 
     const payload = {
       id: _id,
       email,
-      firstName,
-      lastName,
+      fullName,
       phoneNumber,
       active,
     };
@@ -28,9 +27,7 @@ export const generateToken = (user) => {
       tokenExpiryTime,
       refreshTokenExpiryTime,
       refreshToken,
-      ...payload,
-      active,
-      phoneNumber,
+      user: { ...payload },
     };
 
     return { success: true, data: tokenResponse };

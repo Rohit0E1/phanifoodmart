@@ -24,26 +24,19 @@ const userSchema = new mongoose.Schema({
     minlength: [6, 'Password must be at least 6 characters long'],
     select: false,
   },
-  firstName: {
+  fullName: {
     type: String,
-    required: [true, 'First name is required'],
-    index: true,
-  },
-  lastName: {
-    type: String,
-    required: [true, 'Last name is required'],
-    index: true,
+    trim: true,
   },
   phoneNumber: {
     type: String,
-    required: [true, 'Phone number is required'],
-    unique: [true, 'Phone number already exists!'],
     trim: true,
   },
   role: {
     type: String,
     enum: roles,
     required: [true, 'Role is required!'],
+    default: 'customer',
     index: true,
   },
   active: {
