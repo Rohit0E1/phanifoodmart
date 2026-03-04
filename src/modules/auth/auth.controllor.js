@@ -34,6 +34,7 @@ export const register = async (req, res) => {
 };
 
 export const refreshToken = async (req, res) => {
+  console.log('refresh token ');
   try {
     const { refreshToken } = req.body;
 
