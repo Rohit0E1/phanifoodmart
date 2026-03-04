@@ -23,14 +23,9 @@ const passwordSchema = z
 
 const phoneSchema = z
   .string({
-    required_error: 'Phone number is required',
     invalid_type_error: 'Phone number must be a string',
   })
-  .nonempty('Phone number cannot be empty')
-  .min(1, 'Phone number is required')
-  .max(10, 'Phone number must not exceed 10 digits')
-  .regex(/^[+]?[\d\s\-()]+$/, 'Invalid phone number format')
-  .trim();
+  .optional();
 
 const nameSchema = (field) =>
   z
@@ -60,18 +55,31 @@ export const registerValidator = validate(async (req) => {
   const bodySchema = z.object({
     email: emailSchema,
     password: passwordSchema,
-    firstName: nameSchema('First name'),
-    lastName: nameSchema('Last name'),
+    fullName: nameSchema('Full name'),
     phoneNumber: phoneSchema,
     role: z
       .enum(allowedRoles, {
-        required_error: 'Role is required',
         invalid_type_error: `Invalid role. Please select one of: ${allowedRoles.join(', ')}`,
       })
       .optional()
       .default('customer'),
     active: z.boolean({ invalid_type_error: 'Active must be a boolean' }).optional().default(true),
   });
+
+  bodySchema.parse(req.body);
+});
+
+export const refreshTokenValidator = validate(async (req) => {
+  const bodySchema = z
+    .object({
+      refreshToken: z
+        .string({
+          required_error: 'Refresh token is required',
+          invalid_type_error: 'Refresh token must be a string',
+        })
+        .nonempty('Refresh token cannot be empty'),
+    })
+    .strict();
 
   bodySchema.parse(req.body);
 });

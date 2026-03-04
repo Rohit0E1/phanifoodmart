@@ -1,5 +1,5 @@
 import { errorResponse, failResponse, successResponse } from '#root/src/core/response/response.js';
-import { loginService, registerService } from './auth.service.js';
+import { loginService, registerService, refreshTokenService } from './auth.service.js';
 
 export const login = async (req, res) => {
   try {
@@ -30,5 +30,22 @@ export const register = async (req, res) => {
   } catch (error) {
     console.error(error.message);
     return errorResponse(res, error.message);
+  }
+};
+
+export const refreshToken = async (req, res) => {
+  try {
+    const { refreshToken } = req.body;
+
+    const result = await refreshTokenService(refreshToken);
+
+    if (!result.success) {
+      return failResponse(res, result.message, 401);
+    }
+
+    return successResponse(res, 'Token refreshed successfully', 200, result.tokenData);
+  } catch (error) {
+    console.error('Refresh Token Error:', error);
+    return errorResponse(res, error.message || 'Internal server error', 500);
   }
 };
