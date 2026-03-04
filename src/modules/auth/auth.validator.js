@@ -68,3 +68,18 @@ export const registerValidator = validate(async (req) => {
 
   bodySchema.parse(req.body);
 });
+
+export const refreshTokenValidator = validate(async (req) => {
+  const bodySchema = z
+    .object({
+      refreshToken: z
+        .string({
+          required_error: 'Refresh token is required',
+          invalid_type_error: 'Refresh token must be a string',
+        })
+        .nonempty('Refresh token cannot be empty'),
+    })
+    .strict();
+
+  bodySchema.parse(req.body);
+});
