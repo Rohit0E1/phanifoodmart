@@ -31,7 +31,7 @@ export const registerService = async (body) => {
   try {
     const { email, password, fullName, phoneNumber, active = true, role } = body;
 
-    const existingUserCheck = await isExistingUser(email, phoneNumber);
+    const existingUserCheck = await isExistingUser(email);
 
     if (!existingUserCheck.success) return { success: false, message: existingUserCheck.message };
 

@@ -34,10 +34,10 @@ export const saveUserData = async (payload) => {
   }
 };
 
-export const isExistingUser = async (email, phone) => {
+export const isExistingUser = async (email) => {
   try {
     const existingUser = await User.countDocuments({
-      $or: [{ email: email }, { phoneNumber: phone }],
+      email: email,
       isDeleted: false,
     });
 
